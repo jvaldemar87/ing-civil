@@ -1,0 +1,90 @@
+---
+import type { Locale } from '../i18n/translations';
+
+interface Props {
+  title: string;
+  description: string;
+  locale: Locale;
+  canonical?: string;
+  image?: string;
+}
+
+const { title, description, locale, canonical, image } = Astro.props;
+
+const siteUrl = Astro.site?.toString() || 'https://username.github.io/ing-civil';
+const defaultImage = `${siteUrl}/og-image.jpg`;
+const currentUrl = canonical || new URL(Astro.url.pathname, siteUrl).toString();
+
+// Structured Data for Civil Engineer Professional
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: '[Nombre del Ingeniero]',
+  jobTitle: 'Ingeniero Civil - Infraestructura Pesada',
+  url: siteUrl,
+  sameAs: [
+    // LinkedIn, etc. when provided
+  ],
+  knowsAbout: [
+    'Ingeniería Civil',
+    'Infraestructura Ferroviaria',
+    'Proyectos Hidráulicos',
+    'Construcción de Presas',
+    'Pavimentos de Concreto',
+    'Rehabilitación de Vías Férreas',
+  ],
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Universidad [Nombre]',
+  },
+};
+
+const keywords = locale === 'es' 
+  ? 'Ingeniería Civil, Infraestructura Ferroviaria, Proyectos Hidráulicos, México, Tren Maya, Construcción de Presas, Carreteras Concreto'
+  : 'Civil Engineering, Railroad Infrastructure, Hydraulic Projects, Mexico, Mayan Train, Dam Construction, Concrete Highways';
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="language" content={locale} />
+<meta name="author" content="[Nombre del Ingeniero]" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={currentUrl} />
+
+<!-- Alternate Languages -->
+{locale === 'es' && <link rel="alternate" hreflang="en" href={currentUrl.replace('/es/', '/en/')} />}
+{locale === 'en' && <link rel="alternate" hreflang="es" href={currentUrl.replace('/en/', '/es/')} />}
+<link rel="alternate" hreflang="x-default" href={currentUrl.replace(`/${locale}/`, '/es/')} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={currentUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image || defaultImage} />
+<meta property="og:locale" content={locale === 'es' ? 'es_MX' : 'en_US'} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={currentUrl} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={image || defaultImage} />
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<!-- Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+<!-- Preconnect to Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
