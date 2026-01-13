@@ -1,23 +1,25 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
-import { t } from '../../i18n/translations';
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { t } from "../../i18n/translations";
 
-const locale = 'es';
+const locale = "es";
 const base = import.meta.env.BASE_URL;
 
 // Get featured projects
-const allProjects = await getCollection('projects', ({ id }) => {
-  return id.startsWith('es/');
+const allProjects = await getCollection("projects", ({ id }) => {
+  return id.startsWith("es/");
 });
 
 const featuredProjects = allProjects
-  .filter(p => p.data.featured)
+  .filter((p) => p.data.featured)
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 3);
 
-const title = 'Ingeniero Civil - Infraestructura Pesada | 40+ Años de Experiencia';
-const description = 'Especialista en proyectos hidráulicos y ferroviarios con más de 40 años de experiencia. Participación en obras emblemáticas como Presa Huites, Tren Maya y proyectos internacionales.';
+const title =
+  "Ingeniero Civil - Infraestructura Pesada | 40+ Años de Experiencia";
+const description =
+  "Especialista en proyectos hidráulicos y ferroviarios con más de 40 años de experiencia. Participación en obras emblemáticas como Presa Huites, Tren Maya y proyectos internacionales.";
 ---
 
 <Layout title={title} description={description} locale={locale}>
@@ -25,35 +27,43 @@ const description = 'Especialista en proyectos hidráulicos y ferroviarios con m
   <section class="relative py-20 lg:py-32 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-blueprint-blue mb-6">
-          Ingeniería Civil<br/>
+        <h1
+          class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-blueprint-blue mb-6"
+        >
+          Ingeniería Civil<br />
           <span class="text-safety-orange">de Infraestructura Pesada</span>
         </h1>
         <div class="dimension-line max-w-xs mx-auto mb-6"></div>
         <p class="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
           40+ años de excelencia en proyectos hidráulicos y ferroviarios
         </p>
-        <a 
+        <a
           href={`${base}${locale}/proyectos`}
-          class="inline-block px-8 py-3 bg-blueprint-blue hover:bg-blueprint-blue-dark text-white font-semibold rounded-md transition-colors shadow-lg hover:shadow-xl"
+          class="inline-block px-8 py-3 bg-white hover:bg-gray-100 text-blueprint-blue border-2 border-blueprint-blue font-semibold rounded-md transition-colors shadow-lg hover:shadow-xl"
         >
-          {t(locale, 'hero.cta')}
+          {t(locale, "hero.cta")}
         </a>
       </div>
 
       <!-- Key Metrics -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
         <div class="technical-border bg-white p-6 rounded-lg text-center">
-          <div class="font-mono text-4xl font-bold text-blueprint-blue mb-2">40+</div>
+          <div class="font-mono text-4xl font-bold text-blueprint-blue mb-2">
+            40+
+          </div>
           <div class="text-gray-600 font-medium">Años de Experiencia</div>
         </div>
         <div class="technical-border bg-white p-6 rounded-lg text-center">
-          <div class="font-mono text-4xl font-bold text-blueprint-blue mb-2">3M+</div>
+          <div class="font-mono text-4xl font-bold text-blueprint-blue mb-2">
+            3M+
+          </div>
           <div class="text-gray-600 font-medium">m³ de Concreto</div>
           <div class="text-sm text-gray-500 mt-1">(Presa Huites)</div>
         </div>
         <div class="technical-border bg-white p-6 rounded-lg text-center">
-          <div class="font-mono text-4xl font-bold text-blueprint-blue mb-2">105</div>
+          <div class="font-mono text-4xl font-bold text-blueprint-blue mb-2">
+            105
+          </div>
           <div class="text-gray-600 font-medium">km Pavimento</div>
           <div class="text-sm text-gray-500 mt-1">(Proyectos Nicaragua)</div>
         </div>
@@ -65,59 +75,77 @@ const description = 'Especialista en proyectos hidráulicos y ferroviarios con m
   <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold text-blueprint-blue mb-4">
-          {t(locale, 'projects.title')}
+        <h2
+          class="text-3xl md:text-4xl font-heading font-bold text-blueprint-blue mb-4"
+        >
+          {t(locale, "projects.title")}
         </h2>
         <div class="dimension-line max-w-xs mx-auto"></div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {featuredProjects.map(project => (
-          <article class="technical-border bg-background-light rounded-lg overflow-hidden hover:shadow-blueprint transition-shadow">
-            <div class="h-48 bg-gradient-to-br from-blueprint-blue to-blueprint-blue-light"></div>
-            <div class="p-6">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="inline-block px-3 py-1 bg-safety-orange/10 text-safety-orange text-xs font-mono font-semibold rounded">
-                  {project.data.category}
-                </span>
-                <span class="text-xs font-mono text-gray-500">{project.data.period}</span>
-              </div>
-              <h3 class="text-xl font-heading font-bold text-blueprint-blue mb-2">
-                {project.data.title}
-              </h3>
-              <p class="text-sm text-gray-600 mb-3">
-                <strong>Cliente:</strong> {project.data.client}
-              </p>
-              <p class="text-sm text-gray-600 mb-4">
-                📍 {project.data.location}
-              </p>
-              {project.data.metrics && (
-                <div class="mb-4 p-3 bg-blueprint-blue/5 rounded">
-                  <p class="font-mono text-xs text-blueprint-blue">
-                    {project.data.metrics.volume || project.data.metrics.length || project.data.metrics.concrete}
-                  </p>
+        {
+          featuredProjects.map((project) => (
+            <article class="technical-border bg-background-light rounded-lg overflow-hidden hover:shadow-blueprint transition-shadow">
+              <div class="h-48 bg-gradient-to-br from-blueprint-blue to-blueprint-blue-light" />
+              <div class="p-6">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="inline-block px-3 py-1 bg-safety-orange/10 text-safety-orange text-xs font-mono font-semibold rounded">
+                    {project.data.category}
+                  </span>
+                  <span class="text-xs font-mono text-gray-500">
+                    {project.data.period}
+                  </span>
                 </div>
-              )}
-              <a 
-                href={`${base}${locale}/proyectos/${project.id.replace('es/', '').replace('.mdx', '')}`}
-                class="inline-flex items-center text-blueprint-blue hover:text-safety-orange font-semibold text-sm transition-colors"
-              >
-                Ver detalles
-                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
-          </article>
-        ))}
+                <h3 class="text-xl font-heading font-bold text-blueprint-blue mb-2">
+                  {project.data.title}
+                </h3>
+                <p class="text-sm text-gray-600 mb-3">
+                  <strong>Cliente:</strong> {project.data.client}
+                </p>
+                <p class="text-sm text-gray-600 mb-4">
+                  📍 {project.data.location}
+                </p>
+                {project.data.metrics && (
+                  <div class="mb-4 p-3 bg-blueprint-blue/5 rounded">
+                    <p class="font-mono text-xs text-blueprint-blue">
+                      {project.data.metrics.volume ||
+                        project.data.metrics.length ||
+                        project.data.metrics.concrete}
+                    </p>
+                  </div>
+                )}
+                <a
+                  href={`${base}${locale}/proyectos/${project.id.replace("es/", "").replace(".mdx", "")}`}
+                  class="inline-flex items-center text-blueprint-blue hover:text-safety-orange font-semibold text-sm transition-colors"
+                >
+                  Ver detalles
+                  <svg
+                    class="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          ))
+        }
       </div>
 
       <div class="text-center mt-12">
-        <a 
+        <a
           href={`${base}${locale}/proyectos`}
           class="inline-block px-6 py-3 border-2 border-blueprint-blue text-blueprint-blue hover:bg-blueprint-blue hover:text-white font-semibold rounded-md transition-all"
         >
-          {t(locale, 'projects.all')}
+          {t(locale, "projects.all")}
         </a>
       </div>
     </div>
@@ -127,7 +155,9 @@ const description = 'Especialista en proyectos hidráulicos y ferroviarios con m
   <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold text-blueprint-blue mb-4">
+        <h2
+          class="text-3xl md:text-4xl font-heading font-bold text-blueprint-blue mb-4"
+        >
           Áreas de Especialización
         </h2>
         <div class="dimension-line max-w-xs mx-auto"></div>

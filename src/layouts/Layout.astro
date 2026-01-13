@@ -1,9 +1,9 @@
 ---
-import MetaTags from '../components/MetaTags.astro';
-import Navigation from '../components/Navigation.astro';
-import FloatingActions from '../components/FloatingActions.astro';
-import type { Locale } from '../i18n/translations';
-import '../styles/global.css';
+import MetaTags from "../components/MetaTags.astro";
+import Navigation from "../components/Navigation.astro";
+import FloatingActions from "../components/FloatingActions.astro";
+import type { Locale } from "../i18n/translations";
+import "../styles/global.css";
 
 interface Props {
   title: string;
@@ -17,10 +17,10 @@ const { title, description, locale, canonical, image } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang={locale}>
   <head>
-    <MetaTags 
+    <MetaTags
       title={title}
       description={description}
       locale={locale}
@@ -30,47 +30,85 @@ const currentPath = Astro.url.pathname;
   </head>
   <body class="min-h-screen flex flex-col blueprint-grid-bg">
     <Navigation locale={locale} currentPath={currentPath} />
-    
+
     <main class="flex-grow">
       <slot />
     </main>
 
-    <footer class="mt-auto border-t border-blueprint-blue/20 bg-white/80 backdrop-blur-sm">
+    <footer
+      class="mt-auto border-t border-blueprint-blue/20 bg-white/80 backdrop-blur-sm"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="dimension-line mb-6"></div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
           <!-- Contact Info -->
           <div>
             <h3 class="font-heading text-lg font-bold text-blueprint-blue mb-3">
-              {locale === 'es' ? 'Contacto' : 'Contact'}
+              {locale === "es" ? "Contacto" : "Contact"}
             </h3>
             <div class="space-y-2 text-sm text-gray-600">
-              <p class="font-mono">[email@example.com]</p>
-              <p class="font-mono">[+52 XXX XXX XXXX]</p>
+              <a
+                href={`mailto:serviproma2021@gmail.com?subject=${encodeURIComponent(locale === "es" ? "Consulta - Servicios de Ingeniería Civil" : "Inquiry - Civil Engineering Services")}&body=${encodeURIComponent(locale === "es" ? "Hola, me gustaría obtener más información sobre sus servicios profesionales." : "Hello, I would like to get more information about your professional services.")}`}
+                class="font-mono hover:text-blueprint-blue transition-colors"
+              >
+                serviproma2021@gmail.com
+              </a>
+              <p class="font-mono">+52 331 062 9895</p>
             </div>
           </div>
 
           <!-- Quick Links -->
           <div>
             <h3 class="font-heading text-lg font-bold text-blueprint-blue mb-3">
-              {locale === 'es' ? 'Enlaces' : 'Links'}
+              {locale === "es" ? "Enlaces" : "Links"}
             </h3>
             <ul class="space-y-2 text-sm">
-              <li><a href={`/${locale}/proyectos`} class="text-gray-600 hover:text-blueprint-blue">{locale === 'es' ? 'Proyectos' : 'Projects'}</a></li>
-              <li><a href={`/${locale}/cv`} class="text-gray-600 hover:text-blueprint-blue">{locale === 'es' ? 'Currículum' : 'Resume'}</a></li>
+              <li>
+                <a
+                  href={`/${locale}/proyectos`}
+                  class="text-gray-600 hover:text-blueprint-blue"
+                  >{locale === "es" ? "Proyectos" : "Projects"}</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/ing-civil/cv.docx"
+                  download
+                  class="text-gray-600 hover:text-blueprint-blue"
+                  >{locale === "es" ? "Currículum" : "Resume"}</a
+                >
+              </li>
             </ul>
           </div>
 
           <!-- Professional Areas -->
           <div>
             <h3 class="font-heading text-lg font-bold text-blueprint-blue mb-3">
-              {locale === 'es' ? 'Especialidades' : 'Specialties'}
+              {locale === "es" ? "Especialidades" : "Specialties"}
             </h3>
             <ul class="space-y-1 text-sm text-gray-600">
-              <li>• {locale === 'es' ? 'Infraestructura Ferroviaria' : 'Railroad Infrastructure'}</li>
-              <li>• {locale === 'es' ? 'Proyectos Hidráulicos' : 'Hydraulic Projects'}</li>
-              <li>• {locale === 'es' ? 'Pavimentos de Concreto' : 'Concrete Pavements'}</li>
+              <li>
+                • {
+                  locale === "es"
+                    ? "Infraestructura Ferroviaria"
+                    : "Railroad Infrastructure"
+                }
+              </li>
+              <li>
+                • {
+                  locale === "es"
+                    ? "Proyectos Hidráulicos"
+                    : "Hydraulic Projects"
+                }
+              </li>
+              <li>
+                • {
+                  locale === "es"
+                    ? "Pavimentos de Concreto"
+                    : "Concrete Pavements"
+                }
+              </li>
             </ul>
           </div>
         </div>
@@ -78,7 +116,14 @@ const currentPath = Astro.url.pathname;
         <div class="dimension-line mb-6"></div>
 
         <div class="text-center text-sm text-gray-600 font-mono">
-          <p>&copy; {new Date().getFullYear()} {locale === 'es' ? 'Todos los derechos reservados' : 'All rights reserved'}</p>
+          <p>
+            &copy; {new Date().getFullYear()}
+            {
+              locale === "es"
+                ? "Todos los derechos reservados"
+                : "All rights reserved"
+            }
+          </p>
         </div>
       </div>
     </footer>
