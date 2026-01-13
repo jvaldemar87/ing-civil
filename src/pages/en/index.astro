@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import FeaturedCarousel from "../../components/FeaturedCarousel.astro";
 import { getCollection } from "astro:content";
 import { t } from "../../i18n/translations";
 
@@ -70,85 +71,8 @@ const description =
     </div>
   </section>
 
-  <!-- Featured Projects -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2
-          class="text-3xl md:text-4xl font-heading font-bold text-blueprint-blue mb-4"
-        >
-          {t(locale, "projects.title")}
-        </h2>
-        <div class="dimension-line max-w-xs mx-auto"></div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {
-          featuredProjects.map((project) => (
-            <article class="technical-border bg-background-light rounded-lg overflow-hidden hover:shadow-blueprint transition-shadow">
-              <div class="h-48 bg-gradient-to-br from-blueprint-blue to-blueprint-blue-light" />
-              <div class="p-6">
-                <div class="flex items-center gap-2 mb-3">
-                  <span class="inline-block px-3 py-1 bg-safety-orange/10 text-safety-orange text-xs font-mono font-semibold rounded">
-                    {project.data.category}
-                  </span>
-                  <span class="text-xs font-mono text-gray-500">
-                    {project.data.period}
-                  </span>
-                </div>
-                <h3 class="text-xl font-heading font-bold text-blueprint-blue mb-2">
-                  {project.data.title}
-                </h3>
-                <p class="text-sm text-gray-600 mb-3">
-                  <strong>Client:</strong> {project.data.client}
-                </p>
-                <p class="text-sm text-gray-600 mb-4">
-                  📍 {project.data.location}
-                </p>
-                {project.data.metrics && (
-                  <div class="mb-4 p-3 bg-blueprint-blue/5 rounded">
-                    <p class="font-mono text-xs text-blueprint-blue">
-                      {project.data.metrics.volume ||
-                        project.data.metrics.length ||
-                        project.data.metrics.concrete}
-                    </p>
-                  </div>
-                )}
-                <a
-                  href={`${base}${locale}/projects/${project.id.replace("en/", "").replace(".mdx", "")}`}
-                  class="inline-flex items-center text-blueprint-blue hover:text-safety-orange font-semibold text-sm transition-colors"
-                >
-                  View details
-                  <svg
-                    class="w-4 h-4 ml-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-
-      <div class="text-center mt-12">
-        <a
-          href={`${base}${locale}/projects`}
-          class="inline-block px-6 py-3 border-2 border-blueprint-blue text-blueprint-blue hover:bg-blueprint-blue hover:text-white font-semibold rounded-md transition-all"
-        >
-          {t(locale, "projects.all")}
-        </a>
-      </div>
-    </div>
-  </section>
+  <!-- Featured Projects Carousel -->
+  <FeaturedCarousel locale={locale} />
 
   <!-- Expertise Areas -->
   <section class="py-16">

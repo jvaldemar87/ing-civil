@@ -1,0 +1,212 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+import { featuredProjects } from "../data/featuredProjects";
+import type { Locale } from "../i18n/translations";
+import { t } from "../i18n/translations";
+
+interface Props {
+    locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<section class="featured-carousel py-16 bg-gradient-to-b from-white to-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="mb-12">
+            <div class="dimension-line mb-6"></div>
+
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div>
+                    <h2
+                        class="font-heading text-3xl md:text-4xl font-bold text-blueprint-blue mb-2"
+                    >
+                        {t(locale, "projects.title")}
+                    </h2>
+                    <p class="text-gray-600">
+                        {
+                            locale === "es"
+                                ? "Experiencia destacada en infraestructura pesada"
+                                : "Featured experience in heavy infrastructure"
+                        }
+                    </p>
+                </div>
+
+                <!-- Navigation Arrows -->
+                <div class="flex items-center gap-2">
+                    <button
+                        class="swiper-button-prev-custom w-12 h-12 flex items-center justify-center border-2 border-blueprint-blue/30 hover:border-safety-orange hover:bg-safety-orange/10 rounded-md transition-all duration-300 group"
+                        aria-label="Previous project"
+                    >
+                        <svg
+                            class="w-5 h-5 text-blueprint-blue group-hover:text-safety-orange transition-colors"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2.5"
+                                d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+
+                    <button
+                        class="swiper-button-next-custom w-12 h-12 flex items-center justify-center border-2 border-blueprint-blue/30 hover:border-safety-orange hover:bg-safety-orange/10 rounded-md transition-all duration-300 group"
+                        aria-label="Next project"
+                    >
+                        <svg
+                            class="w-5 h-5 text-blueprint-blue group-hover:text-safety-orange transition-colors"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2.5"
+                                d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="dimension-line mt-6"></div>
+        </div>
+
+        <!-- Swiper Container -->
+        <div class="swiper-container-projects overflow-hidden">
+            <div class="swiper-wrapper">
+                {
+                    featuredProjects.map((project) => (
+                        <div class="swiper-slide h-auto">
+                            <ProjectCard project={project} locale={locale} />
+                        </div>
+                    ))
+                }
+            </div>
+
+            <!-- Pagination -->
+            <div class="swiper-pagination-custom mt-8"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Swiper Styles -->
+<style>
+    .swiper-container-projects {
+        padding-bottom: 1rem;
+    }
+
+    .swiper-slide {
+        height: auto;
+    }
+
+    /* Custom Pagination */
+    :global(.swiper-pagination-custom) {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    :global(.swiper-pagination-custom .swiper-pagination-bullet) {
+        width: 8px;
+        height: 8px;
+        background-color: #0047ab;
+        opacity: 0.3;
+        border-radius: 50%;
+        transition: all 0.3s;
+        cursor: pointer;
+    }
+
+    :global(.swiper-pagination-custom .swiper-pagination-bullet-active) {
+        opacity: 1;
+        background-color: #ff5733;
+        width: 24px;
+        border-radius: 4px;
+    }
+
+    /* Center slide effect */
+    :global(.swiper-slide-active .project-card) {
+        transform: scale(1.02);
+    }
+</style>
+
+<!-- Swiper JS -->
+<script>
+    import Swiper from "swiper";
+    import {
+        Navigation,
+        Pagination,
+        Autoplay,
+        EffectCoverflow,
+    } from "swiper/modules";
+    import "swiper/css";
+    import "swiper/css/navigation";
+    import "swiper/css/pagination";
+
+    // Initialize Swiper
+    const swiper = new Swiper(".swiper-container-projects", {
+        modules: [Navigation, Pagination, Autoplay],
+
+        // Responsive breakpoints
+        slidesPerView: 1,
+        spaceBetween: 20,
+
+        breakpoints: {
+            640: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 32,
+            },
+        },
+
+        // Navigation
+        navigation: {
+            nextEl: ".swiper-button-next-custom",
+            prevEl: ".swiper-button-prev-custom",
+        },
+
+        // Pagination
+        pagination: {
+            el: ".swiper-pagination-custom",
+            clickable: true,
+        },
+
+        // Autoplay
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: true,
+            pauseOnMouseEnter: true,
+        },
+
+        // Loop
+        loop: true,
+
+        // Centered slides
+        centeredSlides: false,
+
+        // Grab cursor
+        grabCursor: true,
+
+        // Keyboard control
+        keyboard: {
+            enabled: true,
+        },
+
+        // Accessibility
+        a11y: {
+            prevSlideMessage: "Previous project",
+            nextSlideMessage: "Next project",
+        },
+    });
+</script>

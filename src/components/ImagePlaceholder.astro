@@ -1,0 +1,87 @@
+---
+interface Props {
+    projectName: string;
+    projectType: "ferroviario" | "carreteras" | "hidraulico";
+}
+
+const { projectName, projectType } = Astro.props;
+
+// Icon selection based on project type
+const iconPath = {
+    ferroviario:
+        "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6",
+    carreteras:
+        "M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7",
+    hidraulico:
+        "M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5",
+}[projectType];
+---
+
+<div
+    class="image-placeholder relative aspect-video w-full overflow-hidden bg-blueprint-blue/10 border-2 border-blueprint-blue/30 rounded-md"
+>
+    <!-- Blueprint Grid Pattern -->
+    <div class="absolute inset-0 opacity-20 blueprint-grid-bg"></div>
+
+    <!-- Center Content -->
+    <div class="relative h-full flex flex-col items-center justify-center p-6">
+        <!-- Icon -->
+        <svg
+            class="w-16 h-16 md:w-20 md:h-20 text-blueprint-blue mb-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d={iconPath}></path>
+        </svg>
+
+        <!-- Project Name -->
+        <p
+            class="font-mono text-xs md:text-sm text-blueprint-blue text-center max-w-xs leading-tight"
+        >
+            {projectName}
+        </p>
+
+        <!-- Technical Annotation -->
+        <div class="mt-4 flex items-center gap-2">
+            <div class="h-px w-8 bg-blueprint-blue/40"></div>
+            <span
+                class="font-mono text-[10px] text-blueprint-blue/60 uppercase tracking-wider"
+            >
+                Imagen Próximamente
+            </span>
+            <div class="h-px w-8 bg-blueprint-blue/40"></div>
+        </div>
+    </div>
+
+    <!-- Corner Markers (Blueprint style) -->
+    <div
+        class="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-blueprint-blue/40"
+    >
+    </div>
+    <div
+        class="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-blueprint-blue/40"
+    >
+    </div>
+    <div
+        class="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-blueprint-blue/40"
+    >
+    </div>
+    <div
+        class="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-blueprint-blue/40"
+    >
+    </div>
+</div>
+
+<style>
+    .image-placeholder {
+        background-image:
+            linear-gradient(rgba(0, 71, 171, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 71, 171, 0.03) 1px, transparent 1px);
+        background-size: 20px 20px;
+    }
+</style>
