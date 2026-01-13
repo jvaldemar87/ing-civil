@@ -12,13 +12,62 @@ const base = import.meta.env.BASE_URL; // '/ing-civil/'
 
 const navItems = [
   { key: "nav.home", href: `${base}${locale}/` },
-  { key: "nav.projects", href: `${base}${locale}/proyectos` },
+  {
+    key: "nav.projects",
+    href: `${base}${locale}/${locale === "es" ? "proyectos" : "projects"}`,
+  },
   { key: "nav.cv", href: `${base}cv.docx`, download: true },
-  { key: "nav.contact", href: `${base}${locale}/contacto` },
+  {
+    key: "nav.contact",
+    href: `${base}${locale}/${locale === "es" ? "contacto" : "contact"}`,
+  },
 ] as const;
 
 const otherLocale: Locale = locale === "es" ? "en" : "es";
-const switchPath = currentPath.replace(`/${locale}/`, `/${otherLocale}/`);
+
+// Route mapping for language switcher
+const routeMap: Record<string, Record<string, string>> = {
+  es: {
+    "/es/": "/en/",
+    "/es/proyectos": "/en/projects",
+    "/es/contacto": "/en/contact",
+    "/es/cv": "/en/cv",
+  },
+  en: {
+    "/en/": "/es/",
+    "/en/projects": "/es/proyectos",
+    "/en/contact": "/es/contacto",
+    "/en/cv": "/es/cv",
+  },
+};
+
+// Get the path without base URL, preserving leading slash
+let pathWithoutBase = currentPath.replace(base, "/");
+
+// Fallback cleanup in case base doesn't end with /
+if (!pathWithoutBase.startsWith("/")) {
+  pathWithoutBase = "/" + pathWithoutBase;
+}
+
+// Find matching route or fallback to simple locale replacement
+let switchPath = "";
+for (const [sourcePath, targetPath] of Object.entries(routeMap[locale])) {
+  if (
+    pathWithoutBase === sourcePath ||
+    pathWithoutBase.startsWith(sourcePath + "/")
+  ) {
+    switchPath =
+      base.replace(/\/$/, "") +
+      targetPath +
+      pathWithoutBase.substring(sourcePath.length);
+    break;
+  }
+}
+
+// Fallback: if no match found, try simple replacement
+if (!switchPath) {
+  switchPath = currentPath.replace(`/${locale}/`, `/${otherLocale}/`);
+}
 ---
 
 <nav
