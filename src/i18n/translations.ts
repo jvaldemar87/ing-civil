@@ -14,6 +14,10 @@ export const translations = {
         // Projects
         'projects.title': 'Proyectos Destacados',
         'projects.all': 'Todos los Proyectos',
+        'projects.timeline': 'Línea Temporal de Proyectos',
+        'projects.timeline.subtitle': 'Cuatro décadas de excelencia en infraestructura pesada',
+        'projects.decade.nav': 'Navegación por Década',
+        'projects.total': 'proyectos',
         'projects.filter': 'Filtrar por:',
         'projects.category.all': 'Todos',
         'projects.category.hydraulic': 'Hidráulico',
@@ -79,6 +83,10 @@ export const translations = {
         // Projects
         'projects.title': 'Featured Projects',
         'projects.all': 'All Projects',
+        'projects.timeline': 'Projects Timeline',
+        'projects.timeline.subtitle': 'Four decades of excellence in heavy infrastructure',
+        'projects.decade.nav': 'Navigate by Decade',
+        'projects.total': 'projects',
         'projects.filter': 'Filter by:',
         'projects.category.all': 'All',
         'projects.category.hydraulic': 'Hydraulic',

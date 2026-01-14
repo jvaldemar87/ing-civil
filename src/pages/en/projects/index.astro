@@ -1,0 +1,263 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { t } from '../../../i18n/translations';
+import { historicalProjects, getProjectsByDecade } from '../../../data/historicalProjects';
+
+const locale = 'en';
+const base = import.meta.env.BASE_URL;
+
+const projectsByDecade = getProjectsByDecade();
+const decades = ['2020s', '2010s', '2000s', '1990s', '1980s'] as const;
+
+const title = 'Projects - Timeline | 40+ Years of Experience';
+const description = 'Historical archive of 25 heavy infrastructure projects from 1984 to present. Experience in dams, railways, highways and hydraulic works.';
+---
+
+<Layout title={title} description={description} locale={locale}>
+  <!-- Hero Section -->
+  <section class="relative py-16 lg:py-24 bg-gradient-to-b from-blueprint-blue/5 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <div class="dimension-line max-w-xs mx-auto mb-6"></div>
+        <h1 class="text-4xl md:text-5xl font-heading font-bold text-blueprint-blue mb-4">
+          {t(locale, 'projects.timeline')}
+        </h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          {t(locale, 'projects.timeline.subtitle')}
+        </p>
+        <div class="dimension-line max-w-xs mx-auto mt-6"></div>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+        <div class="technical-border bg-white p-4 text-center">
+          <div class="font-mono text-3xl font-bold text-blueprint-blue">{historicalProjects.length}</div>
+          <div class="text-sm text-gray-600 mt-1">{t(locale, 'projects.total')}</div>
+        </div>
+        <div class="technical-border bg-white p-4 text-center">
+          <div class="font-mono text-3xl font-bold text-blueprint-blue">40+</div>
+          <div class="text-sm text-gray-600 mt-1">Years</div>
+        </div>
+        <div class="technical-border bg-white p-4 text-center">
+          <div class="font-mono text-3xl font-bold text-blueprint-blue">5</div>
+          <div class="text-sm text-gray-600 mt-1">Decades</div>
+        </div>
+        <div class="technical-border bg-white p-4 text-center">
+          <div class="font-mono text-3xl font-bold text-blueprint-blue">2</div>
+          <div class="text-sm text-gray-600 mt-1">Countries</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+        
+        <!-- Decade Navigation (Sidebar) -->
+        <aside class="hidden lg:block lg:col-span-3">
+          <nav class="sticky top-24 bg-white technical-border rounded-lg p-6">
+            <h2 class="font-heading font-bold text-blueprint-blue mb-4 text-sm uppercase tracking-wide">
+              {t(locale, 'projects.decade.nav')}
+            </h2>
+            <ul class="space-y-2">
+              {decades.map((decade) => {
+                const count = projectsByDecade[decade].length;
+                return (
+                  <li>
+                    <a 
+                      href={`#${decade}`}
+                      class="decade-link block py-2 px-3 rounded font-mono text-sm hover:bg-blueprint-blue/10 hover:text-blueprint-blue transition-colors"
+                      data-decade={decade}
+                    >
+                      <span class="font-bold">{decade}</span>
+                      <span class="ml-2 text-gray-500">({count})</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+        </aside>
+
+        <!-- Projects Timeline -->
+        <div class="lg:col-span-9 mt-8 lg:mt-0">
+          {decades.map((decade) => {
+            const projects = projectsByDecade[decade];
+            if (projects.length === 0) return null;
+
+            return (
+              <div id={decade} class="decade-section mb-16 scroll-mt-24">
+                <!-- Decade Header -->
+                <div class="mb-8">
+                  <div class="flex items-center gap-4 mb-2">
+                    <h2 class="text-3xl font-heading font-bold text-blueprint-blue">
+                      {decade}
+                    </h2>
+                    <span class="px-3 py-1 bg-safety-orange/10 text-safety-orange font-mono text-sm font-semibold rounded">
+                      {projects.length} {t(locale, 'projects.total')}
+                    </span>
+                  </div>
+                  <div class="dimension-line max-w-full"></div>
+                </div>
+
+                <!-- Projects List -->
+                <div>
+                  {projects.map((project, index) => (
+                    <article class="technical-border bg-white rounded-lg overflow-hidden hover:shadow-blueprint transition-all duration-300 group mb-16">
+                      <div class="p-6">
+                        <div class="flex flex-col md:flex-row md:items-start gap-4">
+                          
+                          <!-- Timeline Marker -->
+                          <div class="flex-shrink-0 md:w-24">
+                            <div class="inline-flex px-3 py-2 bg-blueprint-blue/10 rounded font-mono text-sm font-bold text-blueprint-blue">
+                              {project.periodo.split('-')[0]}
+                            </div>
+                          </div>
+
+                          <!-- Content -->
+                          <div class="flex-1">
+                            <!-- Title -->
+                            <h3 class="text-xl font-heading font-bold text-blueprint-blue mb-2 group-hover:text-safety-orange transition-colors">
+                              {project.titulo.en}
+                            </h3>
+
+                            <!-- Client -->
+                            <p class="text-sm text-gray-600 mb-3">
+                              <span class="font-mono text-xs text-gray-500 uppercase tracking-wide">Client: </span>
+                              <span class="font-medium">{project.cliente}</span>
+                            </p>
+
+                            <!-- Description -->
+                            <p class="text-gray-700 mb-4 line-clamp-2">
+                              {project.descripcion.en}
+                            </p>
+
+                            <!-- Tags -->
+                            <div class="flex flex-wrap gap-2 mb-4">
+                              {project.tags.en.map((tag) => (
+                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-mono rounded">
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+
+                            <!-- Footer -->
+                            <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+                              <div class="flex items-center gap-4 text-xs text-gray-500">
+                                {project.ubicacion && (
+                                  <span class="flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    {project.ubicacion.en}
+                                  </span>
+                                )}
+                                <span class="font-mono">{project.periodo}</span>
+                              </div>
+
+                              <a 
+                                href={`${base}${locale}/projects/${project.id}`}
+                                class="inline-flex items-center gap-1 text-sm font-semibold text-blueprint-blue hover:text-safety-orange transition-colors"
+                              >
+                                View Details
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Force sidebar visibility and grid layout on large screens */
+  @media (min-width: 1024px) {
+    aside.hidden {
+      display: block !important;
+    }
+    
+    /* Force grid layout */
+    div.max-w-7xl > div:has(aside) {
+      display: grid !important;
+      grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+      gap: 2rem !important;
+    }
+    
+    /* Sidebar column span */
+    aside.hidden {
+      grid-column: span 3 / span 3 !important;
+    }
+    
+    /* Main content column span */
+    div.max-w-7xl > div:has(aside) > div:last-child {
+      grid-column: span 9 / span 9 !important;
+      margin-top: 0 !important;
+    }
+    
+    /* Force sticky positioning */
+    aside nav {
+      position: sticky !important;
+      top: 6rem !important;
+    }
+  }
+
+  /* Active decade link highlight */
+  .decade-link.active {
+    background-color: rgba(0, 71, 171, 0.1);
+    color: #0047AB;
+    font-weight: 700;
+  }
+</style>
+
+<script>
+  // Scroll spy for decade navigation
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -70% 0px',
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        
+        // Remove active class from all links
+        document.querySelectorAll('.decade-link').forEach(link => {
+          link.classList.remove('active');
+        });
+        
+        // Add active class to current decade link
+        const activeLink = document.querySelector(`[data-decade="${id}"]`);
+        if (activeLink) {
+          activeLink.classList.add('active');
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe all decade sections
+  document.querySelectorAll('.decade-section').forEach(section => {
+    observer.observe(section);
+  });
+</script>
+</Layout>
