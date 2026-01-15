@@ -24,7 +24,7 @@ export interface FeaturedProject {
 
 export const featuredProjects: FeaturedProject[] = [
     {
-        id: 'tren-maya-tramo-3',
+        id: 'tren-maya-tramo-3-2025',
         cliente: 'SEDENA - FONATUR Tren Maya',
         titulo: {
             es: 'Tren Maya Tramo 3: Kalkini – Izamal',
@@ -46,7 +46,7 @@ export const featuredProjects: FeaturedProject[] = [
         }
     },
     {
-        id: 'linea-z-medias-aguas',
+        id: 'linea-z-medias-aguas-2022',
         cliente: 'CONSORCIO FIT RECSA-URALES',
         titulo: {
             es: 'Línea Z - Tramo Medias Aguas a Ubero',
@@ -69,7 +69,7 @@ export const featuredProjects: FeaturedProject[] = [
         }
     },
     {
-        id: 'libramiento-matamoros',
+        id: 'libramiento-matamoros-2009',
         cliente: 'Secretaría de Comunicaciones y Transportes',
         titulo: {
             es: 'Libramiento Ferroviario Matamoros-Brownsville',
@@ -91,7 +91,7 @@ export const featuredProjects: FeaturedProject[] = [
         }
     },
     {
-        id: 'nicaragua-carreteras',
+        id: 'nejapa-puerto-sandino-2012',
         cliente: 'Consorcio CEMEX-MECO-LLANSA',
         titulo: {
             es: 'Carretera Nejapa – Puerto Sandino',
@@ -114,7 +114,7 @@ export const featuredProjects: FeaturedProject[] = [
         }
     },
     {
-        id: 'el-rama-kukra',
+        id: 'el-rama-kukra-nicaragua-2012',
         cliente: 'Constructora Santa Fe de Costa Rica',
         titulo: {
             es: 'Carretera El Rama – Kukra Hill – Laguna de Perlas',

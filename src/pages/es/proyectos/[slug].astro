@@ -1,0 +1,293 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { t } from "../../../i18n/translations";
+import {
+    historicalProjects,
+    type HistoricalProject,
+} from "../../../data/historicalProjects";
+import ProjectGallery from "../../../components/ProjectGallery.astro";
+import type { GetStaticPaths } from "astro";
+
+const locale = "es";
+
+// Generate static paths for all projects in Spanish
+export const getStaticPaths = (async () => {
+    return historicalProjects.map((project) => ({
+        params: { slug: project.id },
+        props: { project },
+    }));
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+// SEO
+const title = `${project.titulo[locale]} | ${t(locale, "project.detail.title")}`;
+const description = project.descripcion[locale].slice(0, 160);
+
+// Navigation
+const projectsPath = "proyectos";
+---
+
+<Layout title={title} description={description} locale={locale}>
+    <!-- Breadcrumb -->
+    <nav class="bg-gray-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <ol class="flex items-center space-x-2 text-sm">
+                <li>
+                    <a
+                        href={`${base}${locale}/`}
+                        class="text-blueprint-blue hover:text-safety-orange transition-colors"
+                    >
+                        Inicio
+                    </a>
+                </li>
+                <li class="text-gray-400">/</li>
+                <li>
+                    <a
+                        href={`${base}${locale}/${projectsPath}/`}
+                        class="text-blueprint-blue hover:text-safety-orange transition-colors"
+                    >
+                        {t(locale, "project.detail.breadcrumb")}
+                    </a>
+                </li>
+                <li class="text-gray-400">/</li>
+                <li class="text-gray-600 font-medium truncate max-w-xs">
+                    {project.titulo[locale]}
+                </li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <article class="py-12 lg:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <header class="mb-12">
+                <div class="dimension-line max-w-xs mb-6"></div>
+
+                <h1
+                    class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-blueprint-blue mb-4"
+                >
+                    {project.titulo[locale]}
+                </h1>
+
+                <div
+                    class="flex flex-wrap items-center gap-4 text-gray-600 mb-6"
+                >
+                    <div class="flex items-center gap-2">
+                        <svg
+                            class="w-5 h-5 text-blueprint-blue"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            ></path>
+                        </svg>
+                        <span class="font-mono text-sm">{project.periodo}</span>
+                    </div>
+
+                    <span class="text-gray-400">|</span>
+
+                    <div class="flex items-center gap-2">
+                        <svg
+                            class="w-5 h-5 text-blueprint-blue"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                            ></path>
+                        </svg>
+                        <span class="text-sm">{project.cliente}</span>
+                    </div>
+                </div>
+
+                <div class="dimension-line max-w-full"></div>
+            </header>
+
+            <!-- Project Gallery -->
+            <ProjectGallery
+                projectId={project.id}
+                projectTitle={project.titulo[locale]}
+                locale={locale}
+            />
+
+            <!-- Two Column Layout -->
+            <div class="grid lg:grid-cols-3 gap-12">
+                <!-- Main Content -->
+                <div class="lg:col-span-2 space-y-8">
+                    <!-- Description -->
+                    <section>
+                        <h2
+                            class="text-2xl font-heading font-bold text-blueprint-blue mb-4 flex items-center gap-2"
+                        >
+                            <svg
+                                class="w-6 h-6"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                ></path>
+                            </svg>
+                            {t(locale, "project.detail.description")}
+                        </h2>
+                        <div class="dimension-line mb-6"></div>
+                        <p
+                            class="text-gray-700 leading-relaxed whitespace-pre-line"
+                        >
+                            {project.descripcion[locale]}
+                        </p>
+                    </section>
+                </div>
+
+                <!-- Sidebar: Technical Info -->
+                <aside class="lg:col-span-1">
+                    <div class="sticky top-24">
+                        <div class="technical-border bg-white rounded-lg p-6">
+                            <h2
+                                class="text-xl font-heading font-bold text-blueprint-blue mb-4 flex items-center gap-2"
+                            >
+                                <svg
+                                    class="w-5 h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                                    ></path>
+                                </svg>
+                                {t(locale, "project.detail.technical.info")}
+                            </h2>
+
+                            <div class="dimension-line mb-6"></div>
+
+                            <dl class="space-y-4">
+                                <!-- Location -->
+                                {
+                                    project.ubicacion && (
+                                        <div>
+                                            <dt class="font-mono text-xs uppercase tracking-wide text-gray-500 mb-1">
+                                                {t(
+                                                    locale,
+                                                    "project.detail.location",
+                                                )}
+                                            </dt>
+                                            <dd class="flex items-center gap-2 text-sm text-gray-900">
+                                                <svg
+                                                    class="w-4 h-4 text-blueprint-blue flex-shrink-0"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                                    />
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                                                    />
+                                                </svg>
+                                                {project.ubicacion[locale]}
+                                            </dd>
+                                        </div>
+                                    )
+                                }
+
+                                <!-- Client -->
+                                <div>
+                                    <dt
+                                        class="font-mono text-xs uppercase tracking-wide text-gray-500 mb-1"
+                                    >
+                                        {t(locale, "project.client")}
+                                    </dt>
+                                    <dd class="text-sm text-gray-900">
+                                        {project.cliente}
+                                    </dd>
+                                </div>
+
+                                <!-- Period -->
+                                <div>
+                                    <dt
+                                        class="font-mono text-xs uppercase tracking-wide text-gray-500 mb-1"
+                                    >
+                                        Periodo
+                                    </dt>
+                                    <dd class="font-mono text-sm text-gray-900">
+                                        {project.periodo}
+                                    </dd>
+                                </div>
+
+                                <!-- Type -->
+                                <div>
+                                    <dt
+                                        class="font-mono text-xs uppercase tracking-wide text-gray-500 mb-1"
+                                    >
+                                        {t(locale, "project.detail.type")}
+                                    </dt>
+                                    <dd
+                                        class="text-sm text-gray-900 capitalize"
+                                    >
+                                        {project.tipo}
+                                    </dd>
+                                </div>
+
+                                <!-- Tags -->
+                                <div>
+                                    <dt
+                                        class="font-mono text-xs uppercase tracking-wide text-gray-500 mb-2"
+                                    >
+                                        {t(locale, "project.detail.tags")}
+                                    </dt>
+                                    <dd class="flex flex-wrap gap-2">
+                                        {
+                                            project.tags[locale].map((tag) => (
+                                                <span
+                                                    class="px-2 py-1 text-xs font-mono rounded"
+                                                    style="background-color: #FF5733; color: white;"
+                                                >
+                                                    {tag}
+                                                </span>
+                                            ))
+                                        }
+                                    </dd>
+                                </div>
+                            </dl>
+                        </div>
+
+                        <!-- Back Button -->
+                        <a
+                            href={`${base}${locale}/${projectsPath}/`}
+                            class="mt-6 block w-full px-4 py-3 border-2 border-blueprint-blue text-blueprint-blue hover:bg-blueprint-blue hover:text-white font-semibold rounded-md transition-all text-center"
+                        >
+                            ← {t(locale, "project.detail.back")}
+                        </a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </article>
+</Layout>
