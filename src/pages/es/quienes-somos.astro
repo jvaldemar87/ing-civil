@@ -1,0 +1,215 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { t } from "../../i18n/translations";
+
+const locale = "es";
+const title = t(locale, "nav.about");
+const description = "Conozca nuestra historia, misión, visión y valores.";
+
+const values = [
+    {
+        title: "Calidad",
+        desc: "Ejecutamos cada proyecto con altos estándares técnicos, garantizando resultados confiables, duraderos y alineados con la normatividad vigente.",
+    },
+    {
+        title: "Seguridad",
+        desc: "Priorizamos la integridad de nuestros colaboradores, clientes y usuarios mediante prácticas responsables y el cumplimiento estricto de protocolos de seguridad.",
+    },
+    {
+        title: "Profesionalismo",
+        desc: "Actuamos con ética, responsabilidad y disciplina técnica en cada etapa del proyecto, asegurando transparencia y confianza.",
+    },
+    {
+        title: "Innovación",
+        desc: "Incorporamos nuevas metodologías, tecnologías y procesos que mejoran la eficiencia, el control y la calidad de nuestras obras y servicios.",
+    },
+    {
+        title: "Compromiso",
+        desc: "Asumimos cada proyecto como una responsabilidad social, cumpliendo tiempos, alcances y expectativas con dedicación y enfoque en resultados.",
+    },
+    {
+        title: "Experiencia",
+        desc: "Aplicamos el conocimiento adquirido en proyectos nacionales e internacionales para ofrecer soluciones integrales y de alto valor agregado.",
+    },
+    {
+        title: "Servicio al Cliente",
+        desc: "Escuchamos, entendemos y respondemos a las necesidades de nuestros clientes, brindando acompañamiento técnico y soluciones adaptadas a cada contexto.",
+    },
+    {
+        title: "Mejora Continua",
+        desc: "Evaluamos y optimizamos constantemente nuestros procesos para elevar la calidad, eficiencia y competitividad de nuestros servicios.",
+    },
+];
+---
+
+<Layout title={title} description={description} locale={locale}>
+    <!-- Hero Section -->
+    <section
+        class="relative py-20 bg-background text-blueprint-blue overflow-hidden border-b border-blueprint-blue/20"
+    >
+        <div
+            class="absolute inset-0 opacity-20 bg-[radial-gradient(#0047AB_1px,transparent_1px)] [background-size:20px_20px]"
+        >
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <h1
+                class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 text-blueprint-blue"
+            >
+                {title}
+            </h1>
+            <div class="h-1 w-20 bg-safety-orange mb-6"></div>
+            <p class="text-xl max-w-2xl text-gray-700">
+                Más de 25 años construyendo confianza y solidez en
+                infraestructura.
+            </p>
+        </div>
+    </section>
+
+    <!-- Reseña Histórica -->
+    <section class="py-16 lg:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2
+                        class="text-3xl font-heading font-bold text-blueprint-blue mb-6"
+                    >
+                        Reseña Histórica
+                    </h2>
+                    <div class="dimension-line mb-6"></div>
+                    <!-- Estilo blueprint -->
+                    <div class="prose prose-lg text-gray-700 space-y-4">
+                        <p>
+                            Desde su fundación en 1996, la empresa ya contaba
+                            con una sólida experiencia en la construcción de
+                            infraestructura de mediana y gran escala. Gracias a
+                            este conocimiento acumulado, su fundador, el <strong
+                                >Ing. Hugo Benítez Hernández</strong
+                            >, decidió impulsar un proyecto empresarial que no
+                            solo participara en la ejecución de obras civiles,
+                            sino que también ofreciera servicios de
+                            mantenimiento y conservación. El objetivo:
+                            garantizar que dichas obras alcancen un mayor
+                            periodo de servicio, con la calidad y seguridad que
+                            los usuarios merecen.
+                        </p>
+                        <p>
+                            Lo anterior ha permitido ampliar los horizontes de
+                            nuestra empresa, impulsando nuestra participación en
+                            el extranjero en proyectos de construcción y
+                            supervisión de infraestructura de gran relevancia.
+                            Estas oportunidades nos han permitido conocer y
+                            adaptarnos a diversas y particulares formas de
+                            control, gestión y desarrollo de obras en contextos
+                            distintos al de nuestro país.
+                        </p>
+                        <p>
+                            Actualmente, la empresa también brinda asesoría
+                            técnica para la recuperación de sobrecostos en
+                            obras, además de participar en el desarrollo de
+                            proyectos en los ramos de construcción,
+                            mantenimiento y conservación de edificios, naves
+                            industriales y comerciales. Con ello, buscamos
+                            ofrecer un portafolio más amplio de servicios que
+                            responda a las necesidades de la ciudadanía, así
+                            como de empresas del sector público y privado.
+                        </p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <!-- Placeholder para imagen histórica si se tuviera -->
+                    <div
+                        class="aspect-[4/3] bg-gray-100 technical-border rounded-lg flex items-center justify-center p-8"
+                    >
+                        <p class="text-gray-400 text-center italic">
+                            Imagen representativa de la empresa o fundador
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Misión y Visión -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Misión -->
+                <div
+                    class="bg-white p-8 rounded-lg shadow-sm technical-border border-l-4 border-l-blueprint-blue"
+                >
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-3">🚀</span>
+                        <h3
+                            class="text-2xl font-heading font-bold text-blueprint-blue"
+                        >
+                            Misión
+                        </h3>
+                    </div>
+                    <p class="text-gray-700">
+                        Brindar soluciones integrales en construcción,
+                        supervisión, mantenimiento y asesoría técnica,
+                        desarrollando proyectos de infraestructura con altos
+                        estándares de calidad, seguridad y eficiencia. Nos
+                        comprometemos a ofrecer servicios confiables y
+                        especializados que respondan a las necesidades del
+                        sector público y privado, incorporando experiencia
+                        nacional e internacional, innovación y una gestión
+                        profesional que garantice obras duraderas al servicio de
+                        la sociedad.
+                    </p>
+                </div>
+
+                <!-- Visión -->
+                <div
+                    class="bg-white p-8 rounded-lg shadow-sm technical-border border-l-4 border-l-safety-orange"
+                >
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-3">👁️</span>
+                        <h3
+                            class="text-2xl font-heading font-bold text-blueprint-blue"
+                        >
+                            Visión
+                        </h3>
+                    </div>
+                    <p class="text-gray-700">
+                        Consolidarnos como una empresa de referencia en la
+                        ejecución, supervisión y conservación de
+                        infraestructura, aplicando metodologías avanzadas,
+                        control técnico especializado y prácticas de gestión que
+                        garanticen obras eficientes, duraderas y de alto valor
+                        para nuestros clientes y usuarios.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Valores -->
+    <section class="py-16 lg:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2
+                    class="text-3xl font-heading font-bold text-blueprint-blue mb-4"
+                >
+                    Nuestros Valores
+                </h2>
+                <div class="dimension-line max-w-xs mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {
+                    values.map((val) => (
+                        <div class="technical-border bg-white p-6 rounded-lg hover:shadow-md transition-shadow">
+                            <h3 class="text-xl font-bold text-blueprint-blue mb-3">
+                                {val.title}
+                            </h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">
+                                {val.desc}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+</Layout>

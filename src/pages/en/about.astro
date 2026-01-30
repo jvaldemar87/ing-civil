@@ -1,0 +1,212 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { t } from "../../i18n/translations";
+
+const locale = "en";
+const title = t(locale, "nav.about");
+const description = "Learn about our history, mission, vision, and values.";
+
+const values = [
+    {
+        title: "Quality",
+        desc: "We execute every project with high technical standards, guaranteeing reliable, durable results aligned with current regulations.",
+    },
+    {
+        title: "Safety",
+        desc: "We prioritize the integrity of our collaborators, clients, and users through responsible practices and strict compliance with safety protocols.",
+    },
+    {
+        title: "Professionalism",
+        desc: "We act with ethics, responsibility, and technical discipline at every project stage, ensuring transparency and trust.",
+    },
+    {
+        title: "Innovation",
+        desc: "We incorporate new methodologies, technologies, and processes that improve the efficiency, control, and quality of our works and services.",
+    },
+    {
+        title: "Commitment",
+        desc: "We take on every project as a social responsibility, meeting timelines, scope, and expectations with dedication and a focus on results.",
+    },
+    {
+        title: "Experience",
+        desc: "We apply knowledge acquired in national and international projects to offer integral solutions with high added value.",
+    },
+    {
+        title: "Customer Service",
+        desc: "We listen, understand, and respond to our clients' needs, providing technical accompaniment and solutions adapted to each context.",
+    },
+    {
+        title: "Continuous Improvement",
+        desc: "We constantly evaluate and optimize our processes to elevate the quality, efficiency, and competitiveness of our services.",
+    },
+];
+---
+
+<Layout title={title} description={description} locale={locale}>
+    <!-- Hero Section -->
+    <section
+        class="relative py-20 bg-background text-blueprint-blue overflow-hidden border-b border-blueprint-blue/20"
+    >
+        <div
+            class="absolute inset-0 opacity-20 bg-[radial-gradient(#0047AB_1px,transparent_1px)] [background-size:20px_20px]"
+        >
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <h1
+                class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 text-blueprint-blue"
+            >
+                {title}
+            </h1>
+            <div class="h-1 w-20 bg-safety-orange mb-6"></div>
+            <p class="text-xl max-w-2xl text-gray-700">
+                Over 25 years building trust and solidity in infrastructure.
+            </p>
+        </div>
+    </section>
+
+    <!-- Historical Review -->
+    <section class="py-16 lg:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2
+                        class="text-3xl font-heading font-bold text-blueprint-blue mb-6"
+                    >
+                        Historical Review
+                    </h2>
+                    <div class="dimension-line mb-6"></div>
+                    <!-- Blueprint style -->
+                    <div class="prose prose-lg text-gray-700 space-y-4">
+                        <p>
+                            Since its foundation in 1996, the company already
+                            had solid experience in the construction of medium
+                            and large-scale infrastructure. Thanks to this
+                            accumulated knowledge, its founder, <strong
+                                >Eng. Hugo Benítez Hernández</strong
+                            >, decided to launch a business project that would
+                            not only participate in civil works execution but
+                            also offer maintenance and conservation services.
+                            The goal: to guarantee that such works achieve a
+                            longer service life, with the quality and safety
+                            that users deserve.
+                        </p>
+                        <p>
+                            This has allowed us to broaden our company's
+                            horizons, boosting our participation abroad in
+                            highly relevant infrastructure construction and
+                            supervision projects. These opportunities have
+                            allowed us to know and adapt to diverse and
+                            particular forms of control, management, and
+                            development of works in contexts different from
+                            those of our country.
+                        </p>
+                        <p>
+                            Currently, the company also provides technical
+                            advisory for cost recovery in construction works, in
+                            addition to participating in the development of
+                            projects in the fields of construction, maintenance,
+                            and conservation of buildings, industrial and
+                            commercial warehouses. With this, we seek to offer a
+                            broader portfolio of services that responds to the
+                            needs of the public, as well as public and private
+                            sector companies.
+                        </p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <!-- Placeholder for historical image if available -->
+                    <div
+                        class="aspect-[4/3] bg-gray-100 technical-border rounded-lg flex items-center justify-center p-8"
+                    >
+                        <p class="text-gray-400 text-center italic">
+                            Representative image of the company or founder
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission and Vision -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Mission -->
+                <div
+                    class="bg-white p-8 rounded-lg shadow-sm technical-border border-l-4 border-l-blueprint-blue"
+                >
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-3">🚀</span>
+                        <h3
+                            class="text-2xl font-heading font-bold text-blueprint-blue"
+                        >
+                            Mission
+                        </h3>
+                    </div>
+                    <p class="text-gray-700">
+                        To provide integral solutions in construction,
+                        supervision, maintenance, and technical advisory,
+                        developing infrastructure projects with high standards
+                        of quality, safety, and efficiency. We are committed to
+                        offering reliable and specialized services that respond
+                        to the needs of the public and private sectors,
+                        incorporating national and international experience,
+                        innovation, and professional management that guarantees
+                        durable works at the service of society.
+                    </p>
+                </div>
+
+                <!-- Vision -->
+                <div
+                    class="bg-white p-8 rounded-lg shadow-sm technical-border border-l-4 border-l-safety-orange"
+                >
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-3">👁️</span>
+                        <h3
+                            class="text-2xl font-heading font-bold text-blueprint-blue"
+                        >
+                            Vision
+                        </h3>
+                    </div>
+                    <p class="text-gray-700">
+                        To consolidate ourselves as a reference company in the
+                        execution, supervision, and conservation of
+                        infrastructure, applying advanced methodologies,
+                        specialized technical control, and management practices
+                        that guarantee efficient, durable, and high-value works
+                        for our clients and users.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section class="py-16 lg:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2
+                    class="text-3xl font-heading font-bold text-blueprint-blue mb-4"
+                >
+                    Our Values
+                </h2>
+                <div class="dimension-line max-w-xs mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {
+                    values.map((val) => (
+                        <div class="technical-border bg-white p-6 rounded-lg hover:shadow-md transition-shadow">
+                            <h3 class="text-xl font-bold text-blueprint-blue mb-3">
+                                {val.title}
+                            </h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">
+                                {val.desc}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+</Layout>

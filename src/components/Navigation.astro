@@ -13,6 +13,18 @@ const base = import.meta.env.BASE_URL; // '/ing-civil/'
 const navItems = [
   { key: "nav.home", href: `${base}${locale}/` },
   {
+    key: "nav.about",
+    href: `${base}${locale}/${locale === "es" ? "quienes-somos" : "about"}`,
+  },
+  {
+    key: "nav.services",
+    href: `${base}${locale}/${locale === "es" ? "servicios" : "services"}`,
+  },
+  {
+    key: "nav.experience",
+    href: `${base}${locale}/${locale === "es" ? "experiencia" : "experience"}`,
+  },
+  {
     key: "nav.projects",
     href: `${base}${locale}/${locale === "es" ? "proyectos" : "projects"}`,
   },
@@ -29,12 +41,18 @@ const otherLocale: Locale = locale === "es" ? "en" : "es";
 const routeMap: Record<string, Record<string, string>> = {
   es: {
     "/es/": "/en/",
+    "/es/quienes-somos": "/en/about",
+    "/es/servicios": "/en/services",
+    "/es/experiencia": "/en/experience",
     "/es/proyectos": "/en/projects",
     "/es/contacto": "/en/contact",
     "/es/cv": "/en/cv",
   },
   en: {
     "/en/": "/es/",
+    "/en/about": "/es/quienes-somos",
+    "/en/services": "/es/servicios",
+    "/en/experience": "/es/experiencia",
     "/en/projects": "/es/proyectos",
     "/en/contact": "/es/contacto",
     "/en/cv": "/es/cv",

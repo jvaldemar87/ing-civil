@@ -5,9 +5,12 @@ export const translations = {
         'nav.projects': 'Proyectos',
         'nav.cv': 'Currículum',
         'nav.contact': 'Contacto',
+        'nav.about': 'Quiénes Somos',
+        'nav.services': 'Servicios',
+        'nav.experience': 'Experiencia',
 
         // Hero
-        'hero.title': 'Ingeniería Civil de Infraestructura Pesada',
+        'hero.title': 'Ingeniería Civil de Obras de Gran Infraestructura',
         'hero.subtitle': '40+ años de excelencia en proyectos hidráulicos y ferroviarios',
         'hero.cta': 'Ver Proyectos',
 
@@ -86,9 +89,12 @@ export const translations = {
         'nav.projects': 'Projects',
         'nav.cv': 'Resume',
         'nav.contact': 'Contact',
+        'nav.about': 'Who We Are',
+        'nav.services': 'Services',
+        'nav.experience': 'Experience',
 
         // Hero
-        'hero.title': 'Heavy Infrastructure Civil Engineering',
+        'hero.title': 'Civil Engineering of Large Infrastructure Works',
         'hero.subtitle': '40+ years of excellence in hydraulic and railroad projects',
         'hero.cta': 'View Projects',
 

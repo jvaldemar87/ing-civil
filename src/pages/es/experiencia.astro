@@ -1,0 +1,24 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { t } from "../../i18n/translations";
+
+const locale = "es";
+const title = t(locale, "nav.experience");
+const description = "Nuestra experiencia en obras de gran infraestructura.";
+---
+
+<Layout title={title} description={description} locale={locale}>
+    <section class="py-20 lg:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1
+                class="text-4xl lg:text-5xl font-heading font-bold text-blueprint-blue mb-6"
+            >
+                {title}
+            </h1>
+            <div class="dimension-line max-w-xs mb-8"></div>
+            <div class="prose prose-lg text-gray-700">
+                <p>Próximamente: Resumen de experiencia y trayectoria.</p>
+            </div>
+        </div>
+    </section>
+</Layout>
