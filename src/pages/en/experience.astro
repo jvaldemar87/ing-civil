@@ -4,20 +4,113 @@ import { t } from "../../i18n/translations";
 
 const locale = "en";
 const title = t(locale, "nav.experience");
-const description = "Our experience in large infrastructure projects.";
+const description =
+    "Our track record in civil, hydraulic, and building infrastructure works.";
+
+const experienceAreas = [
+    {
+        title: "Studies and Projects",
+        desc: "Development of conceptual, basic, and detailed engineering, BIM modeling, and feasibility studies to ensure viable and efficient technical solutions.",
+        icon: "📐",
+    },
+    {
+        title: "Building Construction",
+        desc: "Construction of residential, commercial, and industrial spaces, integrating functionality, aesthetics, and cutting-edge construction technology.",
+        icon: "🏢",
+    },
+    {
+        title: "Road Infrastructure Works",
+        desc: "Execution and modernization of highways, roads, bridges, and interchanges, ensuring connectivity and safety in land transportation.",
+        icon: "🛣️",
+    },
+    {
+        title: "Hydraulic Infrastructure Works",
+        desc: "Construction of dams, canals, storage systems, drinking water, and drainage, efficiently managing water resources.",
+        icon: "💧",
+    },
+    {
+        title: "Railroad Infrastructure Works",
+        desc: "Rehabilitation and laying of railway tracks, sidings, and multimodal terminals, boosting logistics and transport development.",
+        icon: "🚂",
+    },
+    {
+        title: "Airport Infrastructure Works",
+        desc: "Construction and maintenance of runways, aprons, taxiways, and air terminals under strict international safety standards.",
+        icon: "✈️",
+    },
+    {
+        title: "Port Infrastructure Works",
+        desc: "Execution of piers, breakwaters, dredging, and marine protection works to strengthen port operational capacity.",
+        icon: "⚓",
+    },
+];
 ---
 
 <Layout title={title} description={description} locale={locale}>
-    <section class="py-20 lg:py-32">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Hero Section -->
+    <section
+        class="relative py-20 bg-background text-blueprint-blue overflow-hidden border-b border-blueprint-blue/20"
+    >
+        <div
+            class="absolute inset-0 opacity-20 bg-[radial-gradient(#0047AB_1px,transparent_1px)] [background-size:20px_20px]"
+        >
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <h1
-                class="text-4xl lg:text-5xl font-heading font-bold text-blueprint-blue mb-6"
+                class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 text-blueprint-blue"
             >
                 {title}
             </h1>
-            <div class="dimension-line max-w-xs mb-8"></div>
-            <div class="prose prose-lg text-gray-700">
-                <p>Coming soon: Summary of experience and track record.</p>
+            <div class="h-1 w-20 bg-safety-orange mb-6"></div>
+            <p class="text-xl max-w-2xl text-gray-700">
+                Extensive track record in strategic sectors for development.
+            </p>
+        </div>
+    </section>
+
+    <!-- Experience Grid -->
+    <section class="py-16 lg:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
+            >
+                {
+                    experienceAreas.map((area) => (
+                        <div class="technical-border bg-white rounded-lg overflow-hidden group hover:shadow-xl transition-all duration-300">
+                            {/* Icon Header with Title */}
+                            <div class="bg-blueprint-blue/5 p-6 border-b border-blueprint-blue/10 flex items-start space-x-4">
+                                <span class="text-4xl group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                                    {area.icon}
+                                </span>
+                                <h3 class="text-xl font-heading font-bold text-blueprint-blue leading-tight pt-1">
+                                    {area.title}
+                                </h3>
+                            </div>
+
+                            <div class="p-8">
+                                <p class="text-gray-600 leading-relaxed text-sm">
+                                    {area.desc}
+                                </p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <div
+                class="mt-20 border-t border-blueprint-blue/10 pt-12 text-center"
+            >
+                <h2
+                    class="text-2xl font-heading font-bold text-blueprint-blue mb-6"
+                >
+                    Have a project in mind?
+                </h2>
+                <a
+                    href={`/${locale}/contact`}
+                    class="inline-flex items-center justify-center px-8 py-3 bg-safety-orange text-white font-bold rounded-lg hover:bg-safety-orange-dark transition-colors shadow-md"
+                >
+                    Contact Us
+                </a>
             </div>
         </div>
     </section>

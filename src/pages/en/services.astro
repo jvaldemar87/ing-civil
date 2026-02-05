@@ -4,20 +4,106 @@ import { t } from "../../i18n/translations";
 
 const locale = "en";
 const title = t(locale, "nav.services");
-const description = "Our professional civil engineering services.";
+const description =
+    "Catalog of professional civil engineering and infrastructure services.";
+
+const services = [
+    {
+        title: "Studies and Projects",
+        desc: "Comprehensive development of basic and detailed engineering, technical and economic feasibility studies, and structural design to ensure the viability and safety of each work.",
+        icon: "📐",
+    },
+    {
+        title: "Budgets and Tenders",
+        desc: "Detailed analysis of unit costs, preparation of bills of quantities, and technical documentation for public and private tenders.",
+        icon: "📊",
+    },
+    {
+        title: "Technical Control and Contracts",
+        desc: "Rigorous supervision of execution, quality control, tracking of physical-financial progress, and administrative contract management to ensure compliance with time and costs.",
+        icon: "📋",
+    },
+    {
+        title: "Cost Recovery Services",
+        desc: "Analysis and management of claims for escalations, extraordinary works, and non-recuperable expenses, protecting the project's financial profitability.",
+        icon: "💰",
+    },
+    {
+        title: "Technical Audits",
+        desc: "Preventive and corrective evaluations to verify regulatory, technical, and financial compliance, identifying risks and areas of opportunity in your projects.",
+        icon: "🔍",
+    },
+    {
+        title: "Construction and Maintenance",
+        desc: "Execution of civil works, construction, and preventive/corrective maintenance, ensuring the operability and lifespan of infrastructure.",
+        icon: "🏗️",
+    },
+];
 ---
 
 <Layout title={title} description={description} locale={locale}>
-    <section class="py-20 lg:py-32">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Hero Section -->
+    <section
+        class="relative py-20 bg-background text-blueprint-blue overflow-hidden border-b border-blueprint-blue/20"
+    >
+        <div
+            class="absolute inset-0 opacity-20 bg-[radial-gradient(#0047AB_1px,transparent_1px)] [background-size:20px_20px]"
+        >
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <h1
-                class="text-4xl lg:text-5xl font-heading font-bold text-blueprint-blue mb-6"
+                class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 text-blueprint-blue"
             >
                 {title}
             </h1>
-            <div class="dimension-line max-w-xs mb-8"></div>
-            <div class="prose prose-lg text-gray-700">
-                <p>Coming soon: Full catalog of services.</p>
+            <div class="h-1 w-20 bg-safety-orange mb-6"></div>
+            <p class="text-xl max-w-2xl text-gray-700">
+                Integral solutions with technical rigor and proven experience.
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="py-16 lg:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {
+                    services.map((service) => (
+                        <div class="technical-border bg-white p-8 rounded-lg hover:shadow-lg transition-all duration-300 group">
+                            <div class="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 transform origin-left">
+                                {service.icon}
+                            </div>
+                            <h3 class="text-xl font-heading font-bold text-blueprint-blue mb-4 border-b border-blueprint-blue/10 pb-2">
+                                {service.title}
+                            </h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                {service.desc}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <!-- CTA Section -->
+            <div class="mt-16 text-center">
+                <a
+                    href={`/${locale}/contact`}
+                    class="inline-flex items-center justify-center px-8 py-3 bg-blueprint-blue text-white font-bold rounded-lg hover:bg-blueprint-blue-dark transition-colors shadow-md"
+                >
+                    Request Information
+                    <svg
+                        class="w-5 h-5 ml-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
             </div>
         </div>
     </section>

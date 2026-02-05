@@ -4,20 +4,120 @@ import { t } from "../../i18n/translations";
 
 const locale = "es";
 const title = t(locale, "nav.experience");
-const description = "Nuestra experiencia en obras de gran infraestructura.";
+const description =
+    "Nuestra trayectoria en obras de infraestructura civil, hidráulica y edificación.";
+
+const experienceAreas = [
+    {
+        title: "Estudios y Proyectos",
+        desc: "Desarrollo de ingeniería conceptual, básica y de detalle, modelado BIM y estudios de factibilidad para garantizar soluciones técnicas viables y eficientes.",
+        image: "/images/studies.jpg", // Placeholder
+        icon: "📐",
+    },
+    {
+        title: "Edificación",
+        desc: "Construcción de espacios habitacionales, comerciales e industriales, integrando funcionalidad, estética y tecnología constructiva de vanguardia.",
+        image: "/images/building.jpg", // Placeholder
+        icon: "🏢",
+    },
+    {
+        title: "Obras de Infraestructura Carretera",
+        desc: "Ejecución y modernización de autopistas, caminos, puentes y distribuidores viales, asegurando conectividad y seguridad en el transporte terrestre.",
+        image: "/images/roads.jpg", // Placeholder
+        icon: "🛣️",
+    },
+    {
+        title: "Obras de Infraestructura Hidráulica",
+        desc: "Construcción de presas, canales, sistemas de agua potable y drenaje, gestionando eficientemente los recursos hídricos.",
+        image: "/images/hydraulic.jpg", // Placeholder
+        icon: "💧",
+    },
+    {
+        title: "Obras de Infraestructura Ferroviaria",
+        desc: "Rehabilitación y tendido de vías férreas, laderos y terminales multimodales, impulsando el desarrollo logístico y de transporte.",
+        image: "/images/rail.jpg", // Placeholder
+        icon: "🚂",
+    },
+    {
+        title: "Obras de Infraestructura Aeroportuaria",
+        desc: "Construcción y mantenimiento de pistas, plataformas, calles de rodaje y terminales aéreas bajo estrictos estándares de seguridad internacional.",
+        image: "/images/airport.jpg", // Placeholder
+        icon: "✈️",
+    },
+    {
+        title: "Obras de Infraestructura Portuaria",
+        desc: "Ejecución de muelles, escolleras, dragados y obras de protección marítima para fortalecer la capacidad operativa de los puertos.",
+        image: "/images/port.jpg", // Placeholder
+        icon: "⚓",
+    },
+];
 ---
 
 <Layout title={title} description={description} locale={locale}>
-    <section class="py-20 lg:py-32">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Hero Section -->
+    <section
+        class="relative py-20 bg-background text-blueprint-blue overflow-hidden border-b border-blueprint-blue/20"
+    >
+        <div
+            class="absolute inset-0 opacity-20 bg-[radial-gradient(#0047AB_1px,transparent_1px)] [background-size:20px_20px]"
+        >
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <h1
-                class="text-4xl lg:text-5xl font-heading font-bold text-blueprint-blue mb-6"
+                class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 text-blueprint-blue"
             >
                 {title}
             </h1>
-            <div class="dimension-line max-w-xs mb-8"></div>
-            <div class="prose prose-lg text-gray-700">
-                <p>Próximamente: Resumen de experiencia y trayectoria.</p>
+            <div class="h-1 w-20 bg-safety-orange mb-6"></div>
+            <p class="text-xl max-w-2xl text-gray-700">
+                Amplia trayectoria en sectores estratégicos para el desarrollo.
+            </p>
+        </div>
+    </section>
+
+    <!-- Experience Grid -->
+    <section class="py-16 lg:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
+            >
+                {
+                    experienceAreas.map((area) => (
+                        <div class="technical-border bg-white rounded-lg overflow-hidden group hover:shadow-xl transition-all duration-300">
+                            {/* Icon Header with Title */}
+                            <div class="bg-blueprint-blue/5 p-6 border-b border-blueprint-blue/10 flex items-start space-x-4">
+                                <span class="text-4xl group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                                    {area.icon}
+                                </span>
+                                <h3 class="text-xl font-heading font-bold text-blueprint-blue leading-tight pt-1">
+                                    {area.title}
+                                </h3>
+                            </div>
+
+                            <div class="p-8">
+                                <p class="text-gray-600 leading-relaxed text-sm">
+                                    {area.desc}
+                                </p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <div
+                class="mt-20 border-t border-blueprint-blue/10 pt-12 text-center"
+            >
+                <h2
+                    class="text-2xl font-heading font-bold text-blueprint-blue mb-6"
+                >
+                    ¿Tiene un proyecto en mente?
+                </h2>
+                <a
+                    href={`/${locale}/contacto`}
+                    class="inline-flex items-center justify-center px-8 py-3 bg-safety-orange text-white font-bold rounded-lg hover:bg-safety-orange-dark transition-colors shadow-md"
+                >
+                    Contáctenos
+                </a>
             </div>
         </div>
     </section>
